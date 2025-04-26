@@ -11,9 +11,19 @@ function App() {
     return storedData ? JSON.parse(storedData) : [];
   });
 
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme === 'dark';
+  });
+
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(healthData));
   }, [healthData]);
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
 
   const addEntry = (entry) => {
     setHealthData(prev => [entry, ...prev]);
@@ -21,7 +31,15 @@ function App() {
 
   return (
     <div className="container">
+      <div className='header'>
       <h1>Health Metrics Tracker</h1>
+      <button
+        className="theme-toggle"
+        onClick={() => setIsDarkMode(prev => !prev)}
+      >
+      {isDarkMode ? 'Light' : 'Dark'} Mode
+      </button>
+      </div>
       <HealthForm onSubmit={addEntry} />
       <HealthChart data={healthData} />
       <HealthTable data={healthData} />
