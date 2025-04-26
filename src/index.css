@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1, h3 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #43a047;
+}
+
+input {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .recharts-responsive-container {
+    width: 100% !important;
+  }
+}
