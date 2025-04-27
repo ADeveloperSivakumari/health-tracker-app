@@ -13,6 +13,9 @@ function HealthChart({ data }) {
   return (
     <div>
       <h3>Today’s Metric Trends</h3>
+      {chartData.length === 0 ? (
+        <p style={{textAlign: 'center'}}>No health data available for today. Add a new entry above!</p>
+      ) : (
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={chartData}>
           <XAxis dataKey="name" />
@@ -22,6 +25,7 @@ function HealthChart({ data }) {
           <Line type="monotone" dataKey="value" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
+      )}
     </div>
   );
 }

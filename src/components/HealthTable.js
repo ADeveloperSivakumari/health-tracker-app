@@ -10,27 +10,31 @@ function HealthTable({ data }) {
   return (
     <div>
       <h3>Entries</h3>
-      <button onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}>
-        Sort by Value ({sortOrder})
-      </button>
-      <table>
-        <thead>
-          <tr>
-            <th>Metric</th>
-            <th>Value</th>
-            <th>Timestamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sorted.map(entry => (
-            <tr key={entry.id}>
-              <td>{entry.metric}</td>
-              <td>{entry.value}</td>
-              <td>{new Date(entry.timestamp).toLocaleString()}</td>
+      {sorted.length === 0 ? (
+        <p style={{ textAlign: 'center' }}>No health data available. Add a new entry above!</p>
+      ) : (<>
+        <button onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}>
+          Sort by Value ({sortOrder})
+        </button>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Value</th>
+              <th>Timestamp</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sorted.map(entry => (
+              <tr key={entry.id}>
+                <td>{entry.metric}</td>
+                <td>{entry.value}</td>
+                <td>{new Date(entry.timestamp).toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>)}
     </div>
   );
 }

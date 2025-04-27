@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaMoon, FaSun } from 'react-icons/fa';
 import HealthForm from './components/HealthForm';
 import HealthTable from './components/HealthTable';
 import HealthChart from './components/HealthChart';
@@ -32,17 +33,26 @@ function App() {
   return (
     <div className="container">
       <div className='header'>
-      <h1>Health Metrics Tracker</h1>
-      <button
-        className="theme-toggle"
-        onClick={() => setIsDarkMode(prev => !prev)}
-      >
-      {isDarkMode ? 'Light' : 'Dark'} Mode
-      </button>
+        <h1>Health Metrics Tracker</h1>
+        <button
+          className="theme-toggle"
+          onClick={() => setIsDarkMode(prev => !prev)}
+          aria-label="Toggle dark/light mode"
+          title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {isDarkMode ? <FaSun /> : <FaMoon />} {/* Use icons for a better visual cue */}
+          <span>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span> {/* Optional text */}
+        </button>
       </div>
       <HealthForm onSubmit={addEntry} />
-      <HealthChart data={healthData} />
-      <HealthTable data={healthData} />
+      {healthData.length === 0 ? (
+        <p style={{textAlign: 'center'}}>No health data available. Add a new entry above!</p>
+      ) : (
+        <>
+          <HealthChart data={healthData} />
+          <HealthTable data={healthData} />
+        </>
+      )}
     </div>
   );
 }
