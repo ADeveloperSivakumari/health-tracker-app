@@ -30,6 +30,16 @@ function App() {
     setHealthData(prev => [entry, ...prev]);
   };
 
+  const deleteEntry = (id) => {
+    setHealthData(prev => prev.filter(entry => entry.id !== id));
+  };
+
+  const editEntry = (updatedEntry) => {
+    setHealthData(prev => prev.map(entry =>
+      entry.id === updatedEntry.id ? updatedEntry : entry
+    ));
+  };
+
   return (
     <div className="container">
       <div className='header'>
@@ -46,11 +56,15 @@ function App() {
       </div>
       <HealthForm onSubmit={addEntry} />
       {healthData.length === 0 ? (
-        <p style={{textAlign: 'center'}}>No health data available. Add a new entry above!</p>
+        <p style={{ textAlign: 'center' }}>No health data available. Add a new entry above!</p>
       ) : (
         <>
           <HealthChart data={healthData} />
-          <HealthTable data={healthData} />
+          <HealthTable
+            data={healthData}
+            onDelete={deleteEntry}
+            onEdit={editEntry}
+          />
         </>
       )}
     </div>

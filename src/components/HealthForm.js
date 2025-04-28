@@ -20,13 +20,14 @@ function HealthForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="health-form">
       <input
         type="text"
         placeholder="Metric (e.g., Step Count)"
         value={metric}
         onChange={e => setMetric(e.target.value)}
         required
+        className="health-form-input"
       />
       <input
         type="number"
@@ -34,8 +35,9 @@ function HealthForm({ onSubmit }) {
         value={value}
         onChange={e => setValue(e.target.value)}
         required
+        className="health-form-input"
       />
-      <button type="submit">Add Entry</button>
+      <button type="submit" className="health-form-btn">Add Entry</button>
     </form>
   );
 }

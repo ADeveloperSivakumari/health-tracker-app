@@ -167,3 +167,54 @@ th, td {
     width: 100% !important;
   }
 }
+
+/* Responsive HealthForm layout */
+.health-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Inputs and button full width on all devices */
+.health-form-input,
+.health-form-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.health-form-btn {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.health-form-btn:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* On tablets and up, reduce width a bit */
+@media (min-width: 768px) {
+  .health-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .health-form-input,
+  .health-form-btn {
+    max-width: 250px;
+    margin: 0.5rem;
+  }
+}
